@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sesoc.myboard.dao.MyMemberMapper">
+    <insert id="myMemberSignup" parameterType="memberVO">
+        INSERT into MEMBER
+        values(
+        #{userid}
+        ,#{userpwd}
+        )
+    </insert>
+    <select id="myMemberLogin" parameterType="memberVO" resultType="int">
+        SELECT count(*)
+        FROM member
+        WHERE userid=#{userid} AND userpwd=#{userpwd}
+    </select>
+    <select id="checkid" parameterType="string" resultType="int">
+        SELECT
+                count(*)
+        FROM
+                member
+        WHERE
+                userid=#{userid}
+    </select>
+</mapper>
