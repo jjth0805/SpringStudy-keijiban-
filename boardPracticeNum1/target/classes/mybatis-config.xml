@@ -8,8 +8,10 @@
     </settings>
 	<typeAliases>
 	    <typeAlias type="com.sesoc.myboard.vo.MyMemberVO" alias="memberVO"/>
+	    <typeAlias type="com.sesoc.myboard.vo.MyBoardVO" alias="boardVO"/>
 	</typeAliases>
 	<mappers>
 	    <mapper resource="mapper/myMemberMapper.xml"/>
+	    <mapper resource="mapper/myBoardMapper.xml"/>
 	</mappers>
 </configuration>

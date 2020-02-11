@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sesoc.myboard.dao.MyBoardMapper">
+    <select id="myBoardList" parameterType="map" resultType="boardVO">
+        SELECT
+                *
+        FROM
+                board
+        WHERE
+        <choose>
+            <when test="searchItem=='title'">title</when>
+            <when test="searchItem=='userid'">userid</when>
+            <when test="searchItem=='content'">content</when>
+        </choose>
+        Like '%'||#{searchKeyword}||'%'
+        ORDER BY boardNum
+    </select>
+    <insert id="myBoardWrite" parameterType="boardVO">
+        INSERT INTO
+                board(boardNum,userid,title,content)
+        VALUES(
+        board_seq.nextval
+        ,#{userid}
+        ,#{title}
+        ,#{content}
+        )
+        
+    </insert>
+    <select id="myBoardRead" parameterType="int" resultType="boardVO">
+        SELECT
+                *
+        FROM
+                board
+        WHERE
+                boardNum = #{boardNum}
+    </select>
+<!--     <delete id="myBoardDelete" parameterType="boardVO"> -->
+<!--         DELETE FROM -->
+<!--                 board -->
+<!--         WHERE -->
+<!--                 boardNum=#{boardNum} AND -->
+<!--                 userid = #{userid} -->
+<!--     </delete> -->
+</mapper>

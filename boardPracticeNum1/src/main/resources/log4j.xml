@@ -12,12 +12,12 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.sesoc.myboard">
-		<level value="trace" />
+		<level value="info" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="trace" />
+		<level value="info" />
 	</logger>
 	
 	<logger name="org.springframework.beans">

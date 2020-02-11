@@ -29,7 +29,7 @@
 				<a>芳名録</a>
 			</h2>
 			<h2>
-				<a>掲示板</a>
+				<a href="<c:url value='/myBoard/myBoardList'/>">掲示板</a>
 			</h2>
 			<h2>
 				<a href="<c:url value='/myMember/logout'/>">ログアウト</a>
