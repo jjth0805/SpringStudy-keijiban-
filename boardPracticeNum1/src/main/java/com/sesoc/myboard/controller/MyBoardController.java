@@ -49,4 +49,11 @@ public class MyBoardController {
 		model.addAttribute("vo",vo);
 		return "myBoard/myBoardRead";
 	}
+	@RequestMapping(value = "myBoard/myBoardDelete", method = RequestMethod.GET)
+	public String myBoardDelete(MyBoardVO vo, HttpSession session, RedirectAttributes rttr) {
+		boolean result=false;
+		if(dao.myBoardDelete(vo,session)!=0) result=true;
+		rttr.addFlashAttribute("boardDelResult",result);
+		return "redirect:/myBoard/myBoardList";
+	}
 }

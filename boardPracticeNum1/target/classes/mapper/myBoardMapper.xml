@@ -35,11 +35,11 @@
         WHERE
                 boardNum = #{boardNum}
     </select>
-<!--     <delete id="myBoardDelete" parameterType="boardVO"> -->
-<!--         DELETE FROM -->
-<!--                 board -->
-<!--         WHERE -->
-<!--                 boardNum=#{boardNum} AND -->
-<!--                 userid = #{userid} -->
-<!--     </delete> -->
+    <delete id="myBoardDelete" parameterType="boardVO">
+        DELETE FROM
+                board
+        WHERE
+                boardNum=#{boardNum} AND
+                userid = #{userid}
+    </delete>
 </mapper>

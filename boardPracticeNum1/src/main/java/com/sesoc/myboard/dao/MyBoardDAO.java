@@ -53,5 +53,16 @@ public class MyBoardDAO {
 		}
 		return vo;
 	}
-	
+	public int myBoardDelete(MyBoardVO vo, HttpSession session) {
+		String userid=(String)session.getAttribute("userid");
+		vo.setUserid(userid);
+		int result=0;
+		try {
+			MyBoardMapper mapper = sqlSession.getMapper(MyBoardMapper.class);
+			result = mapper.myBoardDelete(vo);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

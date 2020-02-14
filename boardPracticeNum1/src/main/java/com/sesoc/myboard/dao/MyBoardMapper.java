@@ -10,4 +10,5 @@ public interface MyBoardMapper {
 	public ArrayList<MyBoardVO> myBoardList(HashMap<String, String> map);
 	public int myBoardWrite(MyBoardVO vo);
 	public MyBoardVO myBoardRead(int boardNum);
+	public int myBoardDelete(MyBoardVO vo);
 }
