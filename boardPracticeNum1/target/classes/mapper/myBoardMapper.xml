@@ -42,4 +42,22 @@
                 boardNum=#{boardNum} AND
                 userid = #{userid}
     </delete>
+    <update id="myBoardHit" parameterType="Integer">
+        UPDATE
+                board
+        SET
+                hit = hit+1
+        WHERE
+                boardNum = #{boardNum}
+    </update>
+    <update id="myBoardUpdate" parameterType="boardVO">
+            UPDATE
+                    board
+            SET
+                    title=#{title}
+                    ,content=#{content}
+            WHERE
+                    boardnum = #{boardNum} AND
+                    userid = #{userid}
+    </update>
 </mapper>

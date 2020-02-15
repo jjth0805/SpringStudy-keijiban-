@@ -14,6 +14,12 @@
     <c:when test="${requestScope.writeResult==false}">
         <script> alert("登録失敗しました！")</script>
     </c:when>
+    <c:when test="${requestScope.boardDelResult==true}">
+        <script> alert("削除できました！")</script>
+    </c:when>
+    <c:when test="${requestScope.boardDelResult==false}">
+        <script> alert("削除失敗しました！")</script>
+    </c:when>
 </c:choose>
 </head>
 <body>

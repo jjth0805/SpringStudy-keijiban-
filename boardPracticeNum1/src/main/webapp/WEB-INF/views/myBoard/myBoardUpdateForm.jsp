@@ -5,52 +5,62 @@
 <head>
 <meta charset="UTF-8">
 <title>${vo.title}</title>
-<link rel="stylesheet" type="text/css" href="" />
+<link rel="stylesheet" type="text/css" href="<c:url value = '/resources/css/default.css' />">
 	<script>
+	    function boardUpdate(){
+	        if(confirm("修正しますか？")){
+	             var updateFormDoc = document.getElementById("updateForm");
+	             updateFormDoc.submit();
+		        }
+		    }
 	</script>
 </head>
 <body>
 <h1>[ 修正 ]</h1>
-<form action="" method="post">
+<form id="updateForm" action="<c:url value='/myBoard/myBoardUpdate'/>" method="post">
 	<table>
 		<tr>
-			<th>번호</th>
-			<td></td>
+			<th>番号</th>
+			<td>${vo.boardNum}</td>
 		</tr>
 		<tr>
-			<th>작성자</th>
-			<td></td>
+			<th>作成者</th>
+			<td>${vo.userid}</td>
 		</tr>
 		<tr>
-			<th>작성일</th>
-			<td></td>
+			<th>作成日</th>
+			<td>${vo.inputdate}</td>
 		</tr>
 		<tr>
-			<th>조회</th>
-			<td></td>
+			<th>照会</th>
+			<td>${vo.hit}</td>
 		</tr>
 		<tr>
-			<th>제목</th>
-			<td><input type="text" name="" value="" required="required"></td>
+			<th>タイトル</th>
+			<td><input type="text" name="title" value="${vo.title}" required="required"></td>
 		</tr>
 		<tr>
-			<th>첨부 파일</th>
+			<th>添付ファイル</th>
 			<td>
 			</td>
 		</tr>
 		<tr>
-			<th>내용</th>
-			<td><textarea name="" required="required"></textarea></td>
+			<th>内容</th>
+			<td><textarea name="content" required="required">${vo.content}</textarea></td>
 		</tr>
 		<tr>
 			<td class="right" colspan="2">
 				<!-- 수정 / 취소 버튼 추가 -->
+				<input type="button" value="修正" onclick="boardUpdate()">
+				<a href="<c:url value='/myBoard/myBoardRead?boardNum=${requestScope.vo.boardNum}'/>">
+				    <input type="button" value="取り消す">
+				</a>
 			</td>
 		</tr>
 	</table>
 	<!-- 서버에 글 번호를 보내기위한 hidden -->
 	<!-- 글 번호를 지정 -->
-	<input type="hidden" name="" value="">
+	<input type="hidden" name="boardNum" value="${requestScope.vo.boardNum}">
 </form>
 </body>
 </html>

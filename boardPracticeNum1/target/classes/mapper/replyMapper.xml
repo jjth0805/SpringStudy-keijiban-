@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sesoc.myboard.dao.ReplyMapper">
+   <insert id="replyWrite" parameterType="replyVO">
+                INSERT INTO
+                reply
+                VALUES(
+                reply_seq.nextval
+                ,#{boardNum}
+                ,#{userid}
+                ,#{replytext}
+                ,sysdate
+                )
+        </insert>
+        <select id="replyList" parameterType="int" resultType="replyVO">
+            SELECT
+                    *
+            FROM
+                    reply
+            WHERE
+                    boardNum=#{boardNum}
+            ORDER BY
+                    replynum DESC
+        </select>
+        <delete id="replyDelete" parameterType="replyVO">
+            DELETE FROM
+                    reply
+            WHERE
+                    replynum=#{replynum} AND
+                    userid=#{userid}
+        </delete>
+</mapper>
