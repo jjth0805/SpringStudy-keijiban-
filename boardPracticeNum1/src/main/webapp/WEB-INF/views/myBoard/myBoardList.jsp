@@ -34,7 +34,7 @@
 	            <option value="content">内容</option>
 	        </select>
 	        <input type="text" name="searchKeyword">
-	        <input type="submit" value="검색"><br>
+	        <input type="submit" value="検索"><br>
 	    </form>
 	    <br>
 	    </td>

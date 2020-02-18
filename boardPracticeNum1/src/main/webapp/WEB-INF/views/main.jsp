@@ -26,7 +26,7 @@
 		<c:otherwise>
                 こんにちは、${sessionScope.userid}様!<br>
 			<h2>
-				<a>芳名録</a>
+				<a href="<c:url value='/myGuestbook/myGuestbookList'/>">芳名録</a>
 			</h2>
 			<h2>
 				<a href="<c:url value='/myBoard/myBoardList'/>">掲示板</a>

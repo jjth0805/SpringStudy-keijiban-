@@ -44,15 +44,6 @@ public class MyBoardController {
 		rttr.addFlashAttribute("writeResult",result);
 		return "redirect:/myBoard/myBoardList";
 	}
-	@RequestMapping(value = "myBoard/myBoardRead", method = RequestMethod.GET)
-	public String myBoardRead(int boardNum, Model model) {
-		System.out.println("7");
-		MyBoardVO vo = dao.myBoardRead(boardNum);
-		ArrayList<ReplyVO> replyList = dao.replyList(boardNum);
-		model.addAttribute("vo",vo);
-		model.addAttribute("replyList", replyList);
-		return "myBoard/myBoardRead";
-	}
 	@RequestMapping(value = "myBoard/myBoardDelete", method = RequestMethod.GET)
 	public String myBoardDelete(MyBoardVO vo, HttpSession session, RedirectAttributes rttr) {
 		boolean result=false;
@@ -78,6 +69,15 @@ public class MyBoardController {
 		System.out.println("6");
 		return "redirect:/myBoard/myBoardRead";
 //		return "redirect:/myBoard/myBoardRead?boardNum"+vo.getBoardNum();
+	}
+	@RequestMapping(value = "myBoard/myBoardRead", method = RequestMethod.GET)
+	public String myBoardRead(int boardNum, Model model) {
+		System.out.println("7");
+		MyBoardVO vo = dao.myBoardRead(boardNum);
+		ArrayList<ReplyVO> replyList = dao.replyList(boardNum);
+		model.addAttribute("vo",vo);
+		model.addAttribute("replyList", replyList);
+		return "myBoard/myBoardRead";
 	}
 	@RequestMapping(value = "myBoard/replyWrite", method = RequestMethod.POST)
 	public String replyWrite(ReplyVO vo, HttpSession session) {

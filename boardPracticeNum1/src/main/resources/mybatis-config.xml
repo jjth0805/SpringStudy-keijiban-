@@ -10,10 +10,12 @@
 	    <typeAlias type="com.sesoc.myboard.vo.MyMemberVO" alias="memberVO"/>
 	    <typeAlias type="com.sesoc.myboard.vo.MyBoardVO" alias="boardVO"/>
 	    <typeAlias type="com.sesoc.myboard.vo.ReplyVO" alias="replyVO"/>
+	    <typeAlias type="com.sesoc.myboard.vo.MyGuestbookVO" alias="guestbookVO"/>
 	</typeAliases>
 	<mappers>
 	    <mapper resource="mapper/myMemberMapper.xml"/>
 	    <mapper resource="mapper/myBoardMapper.xml"/>
 	    <mapper resource="mapper/replyMapper.xml"/>
+	    <mapper resource="mapper/myGuestbookMapper.xml"/>
 	</mappers>
 </configuration>
