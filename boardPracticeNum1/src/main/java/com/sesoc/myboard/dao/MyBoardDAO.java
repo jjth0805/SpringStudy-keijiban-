@@ -5,26 +5,31 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 
 import com.sesoc.myboard.vo.MyBoardVO;
 import com.sesoc.myboard.vo.ReplyVO;
 @Repository
 public class MyBoardDAO {
+	
+	private final int countPerPage = 10;
+	private final int pagePerGroup = 5;
+	
 	@Autowired
 	private SqlSession sqlSession;
 
-	public ArrayList<MyBoardVO> myBoardList(String searchItem, String searchKeyword) {
+	public ArrayList<MyBoardVO> myBoardList(String searchItem, String searchKeyword, PageNavigator navi) {
 		HashMap<String, String> map = new HashMap<>();
 		map.put("searchItem", searchItem);
 		map.put("searchKeyword",searchKeyword);
 		ArrayList<MyBoardVO> list = null;
+		RowBounds rb = new RowBounds(navi.getStartRecord(), navi.getCountPerPage());
 		try {
 			MyBoardMapper mapper = sqlSession.getMapper(MyBoardMapper.class);
-			list = mapper.myBoardList(map);
+			list = mapper.myBoardList(map, rb);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -110,5 +115,20 @@ public class MyBoardDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public PageNavigator getNavi(int currentPage, String searchItem, String searchKeyword) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("searchItem", searchItem);
+		map.put("searchKeyword", searchKeyword);
+		int totalRecordsCount = 0;
+		try {
+			MyBoardMapper mapper = sqlSession.getMapper(MyBoardMapper.class);
+			totalRecordsCount = mapper.getTotal(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, currentPage, totalRecordsCount);
+		return navi;
 	}
 }

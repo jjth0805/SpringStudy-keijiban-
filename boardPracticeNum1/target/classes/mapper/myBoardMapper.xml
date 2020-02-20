@@ -60,4 +60,17 @@
                     boardnum = #{boardNum} AND
                     userid = #{userid}
     </update>
+    <select id="getTotal" parameterType="map" resultType="int">
+            SELECT
+                    count(*)
+            FROM
+                    board
+            WHERE
+                    <choose>
+                        <when test="searchItem == 'userid'">userid</when>
+                        <when test="searchItem == 'title'">title</when>
+                        <when test="searchItem == 'content'">content</when>
+                    </choose>
+                    LIKE '%'||#{searchKeyword}||'%'
+        </select>
 </mapper>

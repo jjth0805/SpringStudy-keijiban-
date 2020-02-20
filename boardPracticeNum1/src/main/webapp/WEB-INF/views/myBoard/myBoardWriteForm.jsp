@@ -37,7 +37,7 @@
         <tr>
             <td class="right" colspan="2">
                 <input type="submit" value="確認" onclick="return writeConfirm()">
-                <a href="<c:url value='/board/getBoardList'/>">
+                <a href="<c:url value='/myBoard/myBoardList'/>">
                 <input type="button" value="キャンセル"></a>
             </td>
         </tr>

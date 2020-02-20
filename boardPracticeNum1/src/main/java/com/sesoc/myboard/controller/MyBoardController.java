@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sesoc.myboard.dao.MyBoardDAO;
+import com.sesoc.myboard.dao.PageNavigator;
 import com.sesoc.myboard.vo.MyBoardVO;
 import com.sesoc.myboard.vo.ReplyVO;
 
@@ -25,11 +26,16 @@ public class MyBoardController {
 
 	@RequestMapping(value = "myBoard/myBoardList", method = {RequestMethod.GET, RequestMethod.POST})
 	public String myBoardList(Model model
+			,@RequestParam(value="currentPage",defaultValue="1") int currentPage
 			,@RequestParam(value="searchItem", defaultValue="userid") String searchItem
 			,@RequestParam(value="searchKeyword", defaultValue="") String searchKeyword
 			) {
-		ArrayList<MyBoardVO> list = dao.myBoardList(searchItem, searchKeyword);
+		PageNavigator navi = dao.getNavi(currentPage, searchItem, searchKeyword);
+		ArrayList<MyBoardVO> list = dao.myBoardList(searchItem, searchKeyword, navi);
 		model.addAttribute("list",list);
+		model.addAttribute("navi",navi);
+		model.addAttribute("searchItem", searchItem);
+		model.addAttribute("searchKeyword",searchKeyword);
 		return "myBoard/myBoardList";
 	}
 	@RequestMapping(value = "myBoard/myBoardWriteForm", method = RequestMethod.GET)

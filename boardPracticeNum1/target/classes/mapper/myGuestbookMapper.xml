@@ -20,4 +20,32 @@
 				ORDER BY
 				seq DESC
 	</select>
+	
+	<insert id="writeGuestbook" parameterType="guestbookVO">
+	   INSERT INTO
+	       guestbook
+	   VALUES(
+	   guestbook_seq.nextval
+	   ,#{userid}
+	   ,#{content}
+	   ,SYSDATE
+	   ,#{originalFilename}
+	   ,#{savedFilename}
+	   )
+	</insert>
+	<delete id="deleteGuestbook" parameterType="guestbookVO">
+	   DELETE FROM
+	       guestbook
+	   WHERE
+	       seq = #{seq} AND
+	       userid = #{userid}
+	</delete>
+	<select id="readGuestbook" parameterType="int" resultType="guestbookVO">
+	   SELECT
+	           *
+	   FROM
+	           guestbook
+	   WHERE
+	           seq=#{seq}
+	</select>
 </mapper>
