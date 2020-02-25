@@ -22,7 +22,17 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.sesoc.myboard" />
-	
-	
-	
+	<beans:bean id="guestbookInterceptor" class="com.sesoc.myboard.interceptor.MyGuestbookInterceptor"/>
+	<beans:bean id="boardInterceptor" class="com.sesoc.myboard.interceptor.MyBoardInterceptor"/>
+	<interceptors>
+	<interceptor>
+	   <mapping path="/myGuestbook/**"/>
+	   <beans:ref bean="guestbookInterceptor"/>
+	</interceptor>
+	<interceptor>
+	   <mapping path="/myBoard/**"/>
+	   <exclude-mapping path="/myBoard/myBoardList"/>
+	   <beans:ref bean="boardInterceptor"/>
+	</interceptor>
+	</interceptors>
 </beans:beans>

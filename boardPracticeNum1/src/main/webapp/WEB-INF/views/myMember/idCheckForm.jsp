@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>アカウント中腹確認</title>
+<title>アカウント重複確認</title>
 <script>
     function closeFunc(){
         close();
@@ -20,10 +20,10 @@
 </script>
 </head>
 <body>
-	<h1>アカウント中腹確認</h1>
+	<h1>アカウント重複確認</h1>
 	<form action="<c:url value='/myMember/checkid'/>" method="post">
 		<input type="text" name="userid" value="${userid}" required="required">
-        <input type="submit" value="中腹確認">
+        <input type="submit" value="重複確認">
         <input type="button" id="btn" value="使用" onclick="submitId()" disabled="disabled">
         <input type="button" value="戻る" onclick="closeFunc()">
     </form>
